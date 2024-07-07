@@ -22,13 +22,9 @@ if (navigator.geolocation) {
 }
 
 const map = L.map("map").setView([0, 0], 15);
-L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg', {
-  attribution: '©himanshu',
-  subdomains: 'abcd',
-  minZoom: 1,
-  maxZoom: 16
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '©diktiyaji___'
 }).addTo(map);
-
 const markers = {};
 
 socket.on("existing-users", (users) => {
