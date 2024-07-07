@@ -20,7 +20,7 @@ io.on("connection", function(socket){
 
     socket.on("disconnect", function(){
         console.log("Client disconnected:", socket.id);
-        io.emit("user disconnected", socket.id);
+        io.emit("user-disconnected", socket.id);
     });
 });
 
@@ -33,3 +33,4 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
