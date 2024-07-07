@@ -28,6 +28,11 @@ io.on("connection", function(socket){
 
     // Send existing users' locations to the newly connected user
     socket.emit("existing-users", users);
+
+    // Handle chat messages
+    socket.on("chat-message", (data) => {
+        io.emit("chat-message", data);
+    });
 });
 
 app.get('/', (req, res) => {
