@@ -22,8 +22,11 @@ if (navigator.geolocation) {
 }
 
 const map = L.map("map").setView([0, 0], 15);
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}', {
-  attribution: '© himanshu'
+L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg', {
+  attribution: '©himanshu',
+  subdomains: 'abcd',
+  minZoom: 1,
+  maxZoom: 16
 }).addTo(map);
 
 const markers = {};
