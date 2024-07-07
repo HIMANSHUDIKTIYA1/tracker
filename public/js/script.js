@@ -48,3 +48,4 @@ socket.on("user-disconnected", (id) => { // Change to match server-side event na
     delete markers[id];
   }
 });
+
