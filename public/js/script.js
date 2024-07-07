@@ -22,8 +22,8 @@ if (navigator.geolocation) {
 }
 
 const map = L.map("map").setView([0, 0], 15);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "himanshu diktiya",
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}', {
+  attribution: '© himanshu'
 }).addTo(map);
 
 const markers = {};
