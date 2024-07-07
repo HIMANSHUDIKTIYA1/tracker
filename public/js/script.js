@@ -1,6 +1,9 @@
+
 const socket = io();
 let person = prompt("Please enter your name");
 console.log(person);
+
+document.getElementById("welcomeMessage").innerText = `Welcome, ${person}!`;
 
 if (navigator.geolocation) {
   navigator.geolocation.watchPosition(
@@ -25,7 +28,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 const markers = {};
 
-// Handle existing users' locations
 socket.on("existing-users", (users) => {
   console.log("Existing users:", users);
   Object.keys(users).forEach(id => {
@@ -57,4 +59,23 @@ socket.on("user-disconnected", (id) => {
     map.removeLayer(markers[id]);
     delete markers[id];
   }
+});
+
+// Chat functionality
+function sendMessage() {
+  const messageInput = document.getElementById("chatInput");
+  const message = messageInput.value;
+  if (message.trim() !== "") {
+    socket.emit("chat-message", { username: person, message: message });
+    messageInput.value = "";
+  }
+}
+
+socket.on("chat-message", (data) => {
+  const { username, message } = data;
+  const chatMessages = document.getElementById("chatMessages");
+  const messageElement = document.createElement("div");
+  messageElement.innerHTML = `<b>${username}:</b> ${message}`;
+  chatMessages.appendChild(messageElement);
+  chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
 });
