@@ -24,4 +24,5 @@ io.on("connection", function(socket){
 app.get('/', (req, res) => {
   res.render("index");
 })
-server.listen( process.env.PORT  , () => { console.log(`Server is running .... ${port}`); });
+const port = process.env.PORT ;
+server.listen( port  , () => { console.log(`Server is running .... ${port}`); });
